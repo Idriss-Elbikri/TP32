@@ -13,13 +13,13 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public List<Client> findAll() {
-        return clientRepository.findAll();
+    public Client findById(Long id) throws Exception {
+        return clientRepository.findById(id).orElseThrow(() -> new Exception("Client id Invalid "));
     }
 
-    public Client findById(Long id) throws Exception {
-        return clientRepository.findById(id).orElseThrow(() -> new Exception("Invalid Client ID"));
-    }
+    public List<Client> findAll() {
+        return clientRepository.findAll();
+    }  
 
     public void addClient(Client client) {
         clientRepository.save(client);
